@@ -1,3 +1,4 @@
+def gv
 pipeline {
 	agent any 
 	environment {
@@ -15,23 +16,30 @@ pipeline {
 				string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
 	           }
 	  stages {
-			   stage('one') {
+			   stage('init') {
 		                steps {
-								echo "this is 1st stage"
-								echo "the branch name is ${branch}"
-								echo "the branch name is env.BRANCH_NAME"
+								script { 
+										gv = load "script.grrovy"
+									   }
 							  }
 							}
-			   stage('two') {
+				stage('build') { 
+				      steps { 
+					  script { 
+							  gv.buildApp()
+					         }
+					        }
+							}
+			   stage('test') {
 			           when {
 					      expression { 
 									params.userFlag == true
 					                 }
-							}
+							} 
 						 steps {
-								 echo "this is 2nd stage"
-								 echo "the version of buils is ${NEW_VERSION}"
-								 echo "executing tests"
+\							script { 
+										gv.testApp()
+					         }
 								}
 							}
 			   stage('three') {
