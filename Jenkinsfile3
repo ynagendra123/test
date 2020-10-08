@@ -9,7 +9,11 @@ pipeline {
 	 tools {
 	        maven 'Maven' 
 		   }
-		   
+	parameters { 
+				string(name: 'Version', defaultvaule: '', description: 'version to deploy on prod')
+				choice(name: 'Version', choices: ['1.0, '1.1', '1.2'], description:: 'version to deploy')
+				booleanParam(name: 'executeTests', defaultvaule: true, description: '')
+	           }
 	  stages {
 			   stage('one') {
 		                steps {
@@ -20,11 +24,14 @@ pipeline {
 							}
 			   stage('two') {
 			           when {
-					      expression { "${branch}" == "main" }
-					  }
+					      expression { 
+									params.executeTests == true
+					                 }
+							}
 						 steps {
 								 echo "this is 2nd stage"
 								 echo "the version of buils is ${NEW_VERSION}"
+								 echo "executing tests"
 								}
 							}
 			   stage('three') {
