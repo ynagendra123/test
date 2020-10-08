@@ -11,7 +11,7 @@ pipeline {
 						     script {
 										if("${env.BRANCH_NAME}" == 'main') { 
 										 echo "this is 2nd stage" { 
-										 echo "hellow world 1234 
+										 echo "hellow world 1234"
 										 }
 										}
 										
