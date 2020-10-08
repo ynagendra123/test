@@ -16,9 +16,7 @@ pipeline {
 							}
 			   stage('two') {
 			           when {
-					      expression { 
-									"${branch}" == "main"
-								  }
+					      expression { "${branch}" == "main" }
 					  }
 						 steps {
 								 echo "this is 2nd stage"
