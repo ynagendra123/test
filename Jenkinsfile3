@@ -13,6 +13,11 @@ pipeline {
 							  }
 							}
 			   stage('two') {
+			           when {
+					      expression { 
+									${env.GIT_BRANCH} == 'main'
+								  }
+					  }
 						 steps {
 								 echo "this is 2nd stage"
 								 echo "the version of buils is ${NEW_VERSION}"
