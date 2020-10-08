@@ -13,9 +13,9 @@ pipeline {
 			when {
 				env.BRANCH == 'main'
 				 }
-							}
 				steps { 
 							echo "good morning"
 				      }
+				}
 			  }
 			}
