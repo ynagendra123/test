@@ -8,5 +8,14 @@ pipeline {
 				 echo "welcome"
 			        }
 				 }
+			stage('second') {
+			branch "main" 
+			when {
+				env.BRANCH == 'main'
+				 }
+							}
+				steps { 
+							echo "good morning"
+				      }
 			  }
 			}
