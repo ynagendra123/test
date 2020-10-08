@@ -4,18 +4,19 @@ pipeline {
 	 NEW_VERSION = '1.3.0'
 	 FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
      GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+	 branch = ${env.GIT_BRANCH}
 	            }
 	  stages {
 			   stage('one') {
 		                steps {
 								echo "this is 1st stage"
-								echo "the branch name is ${env.GIT_BRANCH}"
+								echo "the branch name is ${branch}"
 							  }
 							}
 			   stage('two') {
 			           when {
 					      expression { 
-									${env.GIT_BRANCH} == 'main'
+									${branch} == 'main'
 								  }
 					  }
 						 steps {
