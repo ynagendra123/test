@@ -9,11 +9,11 @@ pipeline {
 			   stage('two') {
 			     when {
 					  expression { 
-					              BRANCH_NAME == 'main' 
+					              env.BRANCH_NAME == 'main' 
 								 }
 					  }
 						 steps {
-								 echo "this is 2nd stage"
+								 echo "this is 2nd stage
 								}
 							}
 			   stage('three') {
