@@ -1,6 +1,20 @@
 def gv
 pipeline {
 	agent any 
+	environment {
+	 NEW_VERSION = '1.3.0'
+	 FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
+     GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+	 branch = "${env.GIT_BRANCH}"
+	            }
+	 tools {
+	        maven 'Maven' 
+		   }
+	parameters { 
+				choice(choices: ['US-EAST-1', 'US-WEST-2'], description: 'What AWS region?', name: 'region')
+				booleanParam(defaultValue: true, description: '', name: 'userFlag')
+				string(defaultValue: "TEST", description: 'What environment?', name: 'userone')
+	           }
 	 stages {
 			   stage('init') {
 		                steps {
@@ -10,6 +24,11 @@ pipeline {
 							  }
 							}
 				stage('build') { 
+				       when {
+					      expression { 
+									params.userFlag == true
+					                 }
+							}
 							steps { 
 									script { 
 									gv.buildApp()
