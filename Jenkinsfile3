@@ -35,8 +35,14 @@ pipeline {
 								}
 							}
 			   stage('three') {
+			        when { 
+					   expression {
+								 params.userFlag == TEST
+								}
+						}
 						  steps {
 								   echo "this is the 3rd stage"
+								   echo "the string value is TEST"
 								}
 							  }
 				}
