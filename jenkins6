@@ -6,8 +6,7 @@ pipeline {
 			  steps { 
 			     echo "hellow"
 				 echo "welcome"
-			     }
-				}
-				
-			 }
-		  
+			        }
+				 }
+			  }
+			}
