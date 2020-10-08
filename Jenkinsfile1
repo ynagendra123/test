@@ -8,7 +8,7 @@ pipeline {
 							}
 			   stage('two') {
 			     when {
-					  expression { "${env.BRANCH_NAME}" == "main" }
+					  expression { "BRANCH_NAME" == "main" }
 					  }
 						 steps {
 								 echo "this is 2nd stage"
