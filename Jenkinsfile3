@@ -2,11 +2,13 @@ pipeline {
 	agent any 
 	environment {
 	 NEW_VERSION = '1.3.0'
+	 branch = ${BRANCH_NAME}
 	            }
 	  stages {
 			   stage('one') {
 		                steps {
 								echo "this is 1st stage"
+								echo "the branch name is ${branch}"
 							  }
 							}
 			   stage('two') {
