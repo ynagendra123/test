@@ -1,0 +1,34 @@
+pipeline {
+	agent any 
+	environment {
+	 NEW_VERSION = '1.3.0'
+	  stages {
+			   stage('one') {
+		                steps {
+								echo "this is 1st stage"
+							  }
+							}
+			   stage('two') {
+						 steps {
+								 echo "this is 2nd stage"
+								 echo "the version of buils is ${NEW_VERSION}"
+								}
+							}
+			   stage('three') {
+						  steps {
+								   echo "this is the 3rd stage"
+								}
+							  }
+				}
+				post {
+				 always {
+				         echo "running always"
+						}
+				 success {
+				        echo "the build is success"
+						 }
+				 failure {
+						echo "the build is falied"
+				         }
+				    }
+		  }
