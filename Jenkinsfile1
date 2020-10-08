@@ -9,8 +9,10 @@ pipeline {
 			   stage('two') {
 						 steps {
 						     script {
-										if("${env.BRANCH_NAME}" == 'dev') { 
-										 echo "this is 2nd stage"
+										if("${env.BRANCH_NAME}" == 'main') { 
+										 echo "this is 2nd stage" { 
+										 echo "hellow world 1234 
+										 }
 										}
 										
 								    }
