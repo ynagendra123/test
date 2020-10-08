@@ -36,6 +36,11 @@ pipeline {
 								  }
 							   }
 				stage('test') { 
+			        when { 
+					   expression {
+								 params.userFlag == 'RAJ'
+								}
+						}
 								steps { 
 											script { 
 											gv.testApp()
