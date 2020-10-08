@@ -10,7 +10,7 @@ pipeline {
 	        maven 'Maven' 
 		   }
 	parameters { 
-				string(name: 'Version', defaultvaule: '', description: 'version to deploy on prod')
+				#string(name: 'Version', defaultvaule: '', description: 'version to deploy on prod')
 				choice(name: 'Version', choices: ['one', 'two', 'three'], description: 'version to deploy')
 				booleanParam(name: 'executeTests', defaultvaule: true, description: '')
 	           }
