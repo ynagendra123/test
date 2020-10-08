@@ -31,11 +31,7 @@ pipeline {
 					        }
 							}
 			   stage('test') {
-			           when {
-					      expression { 
-									params.userFlag == true
-					                 }
-							} 
+			            
 						 steps {
 \							script { 
 										gv.testApp()
@@ -43,11 +39,7 @@ pipeline {
 								}
 							}
 			   stage('three') {
-			        when { 
-					   expression {
-								 params.userFlag == 'RAJ'
-								}
-						}
+			      
 						  steps {
 								   echo "this is the 3rd stage"
 								   echo "the string value is TEST"
