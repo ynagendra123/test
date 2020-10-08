@@ -1,21 +1,17 @@
 pipeline {
     agent any
+
     stages {
-        stage('One') {
-                steps {
-                        echo 'Hi, this is Zulaikha from edureka'
-			
-                }
+        stage('Input') {
+            steps {
+                input('Do you want to proceed?')
+            }
         }
-	    stage('Two'){
-		    
-		steps {
-			input('Do you want to proceed?')
-			}
-	    }
-        
-                               
-			} 
-			}
-        
-    
+
+        stage('If Proceed is clicked') {
+            steps {
+                print('hello')
+            }
+        }
+    }
+}
