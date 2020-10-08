@@ -1,47 +1,21 @@
 pipeline {
-    agent any
-    stages {
-        stage('One') {
-                steps {
-                        echo 'Hi, this is Zulaikha from edureka'
-			
-                }
-        }
-	    stage('Two'){
-		    
-		steps {
-			input('Do you want to proceed?')
-        }
-	    }
-        stage('Three') {
-                when {
-                        not {
-                                branch "master"
-                        }
-                }
-                steps {
-			echo "Hello"
-                        }
-        }
-        stage('Four') {
-                parallel {
-                        stage('Unit Test') {
-                                steps{
-                                        echo "Running the unit test..."
-                                }
-                        }
-                        stage('Integration test') {
-                        agent {
-                                docker {
-                                        reuseNode false
-					image 'ubuntu'
-                                        }
-			}
-				steps {
-					echo 'Running the integration test..'
+	agent any 
+	  stages {
+			   stage('one') {
+		                steps {
+								echo "this is 1st stage"
+							  }
+							}
+			   stage('two') {
+						 steps {
+								 echo "this is 2nd stage"
+								 input('Do you want to proceed')
+								}
+							}
+			   stage('three') {
+						  steps {
+								   echo "this is the 3rd stage"
+								}
+							  }
 				}
-                               
-			}  }
-        }
-    }
-}
+		  }
