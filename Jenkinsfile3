@@ -7,7 +7,7 @@ pipeline {
 			   stage('one') {
 		                steps {
 								echo "this is 1st stage"
-								echo "the branch name is ${BRANCH_NAME}"
+								echo "the branch name is ${env.BRANCH_NAME}"
 							  }
 							}
 			   stage('two') {
