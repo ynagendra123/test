@@ -16,5 +16,12 @@ pipeline {
 										   }
 								  }
 							   }
+				stage('build') { 
+								steps { 
+											script { 
+											gv.testApp()
+												   }
+									  }
+							   }
 		    }
-		} 
+		}  
