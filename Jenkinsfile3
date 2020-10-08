@@ -10,8 +10,8 @@ pipeline {
 	        maven 'Maven' 
 		   }
 	parameters { 
-				choice(name: 'Version', choices: ['one', 'two', 'three'], description: 'version to deploy')
-				booleanParam(name: 'executeTests', defaultvaule: true, description: '')
+				choice(choices: ['US-EAST-1', 'US-WEST-2'], description: 'What AWS region?', name: 'region')
+				booleanParam(defaultValue: true, description: '', name: 'userFlag')
 	           }
 	  stages {
 			   stage('one') {
@@ -24,7 +24,7 @@ pipeline {
 			   stage('two') {
 			           when {
 					      expression { 
-									params.executeTests == true
+									params.userFlag == true
 					                 }
 							}
 						 steps {
