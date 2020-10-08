@@ -7,14 +7,14 @@ pipeline {
 							  }
 							}
 			   stage('two') {
-			     when {
-					  expression { 
-					               ${env.BRANCH_NAME} == 'main' 
-								 }
-					  }
 						 steps {
-								 echo "this is 2nd stage"
-								}
+						     script {
+										if("${env.BRANCH_NAME}" == 'main') { 
+										 echo "this is 2nd stage"
+										}
+										
+								    }
+							  }
 							}
 			   stage('three') {
 						  steps {
