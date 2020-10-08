@@ -1,0 +1,34 @@
+pipeline { 
+  agent none 
+  stages { 
+   stage('Non-parllel Stage') { 
+    agent { 
+			label "linux-machineone"
+	      }
+	 steps { 
+	         echo "this stage will be executed first"
+	       }
+							}
+	stage('Run Tests') { 
+				parallel { 
+				 stage('Test on windows') { 
+				  agent { 
+				       label "windows_machine"
+					   }
+					   steps { 
+					   echo "running test cases on windows machine"
+					   }
+				 }
+				 stage('test on linux') { 
+				 agent { 
+				     label "linux_machine"
+					}
+					steps { 
+					  echo "running on linux machine"
+					}
+				 }
+				 
+				}
+			}
+  }
+}
