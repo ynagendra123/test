@@ -1,0 +1,36 @@
+myVar = 'ramu'
+
+pipeline {
+  agent any
+  stages {
+    stage('one') {
+      steps {
+        echo "${myVar}" // prints 'initial_value'
+        sh 'echo welcome > myfile.txt'
+        script {
+          // OPTION 1: set variable by reading from file.
+          // FYI, trim removes leading and trailing whitespace from the string
+          second = readFile('myfile.txt').trim()
+
+          // OPTION 2: set variable by grabbing output from script
+          //myVar = sh(script: 'echo hotness', returnStdout: true).trim()
+        }
+        echo "${second}" // prints 'hotness'
+      }
+    }
+    stage('two') {
+      steps {
+        echo "${second}" // prints 'hotness'
+      }
+    }
+    // this stage is skipped due to the when expression, so nothing is printed
+    stage('three') {
+      when {
+        expression { second != 'welcome' }
+      }
+      steps {
+        echo "three: ${second}"
+     }
+    }
+  }
+}
