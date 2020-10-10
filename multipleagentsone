@@ -1,0 +1,41 @@
+pipeline { 
+  agent any
+  stages { 
+   stage('build') { 
+	 steps { 
+	         echo "this stage will be executed first"
+			 sh "hostname -i"
+		
+	       }
+							}
+	stage('Run Tests') { 
+				parallel { 
+				 stage('Test on windows') { 
+				  agent { 
+				       label "my_slave"
+					   }
+					   steps { 
+					   echo "running test cases on windows machine"
+					   sh "hostname -i"
+					   }
+				 }
+				 stage('test on linux') { 
+				 agent { 
+				     label "my_slave2"
+					}
+					steps { 
+					  echo "running on linux machine"
+					  sh "hostname -i"
+					}
+				 }
+				 
+				}
+			}
+	 stage('deploy') {
+					steps {
+							sh "hostname -i"
+						  } 
+						  
+				      }
+  }
+}
